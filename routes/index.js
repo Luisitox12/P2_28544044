@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Hola Mundo', 
     name: 'Luis Augusto',
-    secondname: 'Hidalgo',
+    secondname: 'Hidalgo Vasquez',
     id: '28544044',
     mat: 'Programacion 2',
     sec: 'Seccion 4',
