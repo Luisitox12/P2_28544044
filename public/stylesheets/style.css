@@ -369,35 +369,99 @@ footer p{
     }
 }
 
-@media only screen and (max-width: 480px) {
-    .tituloYretorno {
-        top: auto;
-    }
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 85%;
+  }
 
-    .tituloYretorno a {
-        font-size: 1em;
-    }
+  div.tituloYretorno{
+    top: 10.1em;
+  }
 
-    header h1 {
-        font-size: 2em;
-    }
+  div.tituloYretorno a{
+    font-size: 1em;
+    padding: 0.3em;
+  }
 
-    header h2 {
-        font-size: 1em;
-    }
+  header{
+    padding: 2em 1em 1em 1em;
+  }
 
-    nav div p {
-        font-size: 1em;
-    }
+  header h1{
+    font-size: 2em;
+  }
 
-    nav div a {
-        margin: 0.2em;
-    }
+  header h2{
+    font-size: 0.9em;
+  }
 
-    .presentacion div,
-    .habilidades .habilidad,
-    .experiencia li,
-    .estudios li {
-        padding: 0 1em;
-    }
+  div.misEnlaces a{
+    margin: 0.5em;
+  }
+
+  nav{
+    height: auto;
+    padding: 0.5em 0em 1.5em 0em;
+  }
+
+  nav div{
+    padding: 0.5em 0em 0.5em 0em;
+  }
+
+  nav div p{
+    font-size: 0.9em;
+  }
+
+  nav div a{
+    width: 5em;
+    height: 5em;
+  }
+
+  nav div a:hover{
+    width: 6em;
+  }
+
+  section.presentacion{
+    padding: 2em 0em 2em 0em;
+  }
+
+  section.presentacion div{
+    padding: 0em 2em 0em 2em;
+  }
+
+  section.habilidades{
+    padding: 0em 0em 1em 1em;
+  }
+
+  div.fila{
+    flex-wrap: wrap;
+  }
+
+  div.habilidad{
+    width: 100%;
+  }
+
+  section.experiencia, section.estudios{
+    padding: 0em 0em 0em 1em;
+  }
+
+  section.otros{
+    padding: 0em 0em 1em 1em;
+  }
+
+  section.contacto{
+    padding: 0em 0em 3em 1em;
+  }
+
+  table.datosContacto{
+    margin-top: 1em;
+  }
+
+  footer{
+    padding: 2em;
+  }
+
+  footer p{
+    font-size: 0.7em;
+  }
 }
