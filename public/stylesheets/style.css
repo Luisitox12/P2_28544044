@@ -321,83 +321,142 @@ footer p{
 }
 
 
+/* Media Queries */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
   body {
-      font-size: 14px;
+    font-size: 14px;
   }
 
-  header {
-      padding: 2em 1em;
+  div.tituloYretorno{
+    flex-direction: column;
+    align-items: center;
   }
 
-  nav {
-      flex-direction: column;
-      height: auto;
+  div.tituloYretorno h3{
+    padding-left: 0em;
   }
 
-  nav div a {
-      margin: 0.5em;
-      width: auto;
-      height: auto;
+  div.tituloYretorno a{
+    margin-left: 0em;
   }
 
-  .tituloYretorno,
-  .misEnlaces,
-  .presentacion,
-  .habilidades,
-  .experiencia,
-  .estudios,
-  .otros,
-  .contacto {
-      flex-direction: column;
-      align-items: center;
+  /* Header */
+  header{
+    padding: 2em 1em 1em 1em;
   }
 
-  .tituloYretorno a,
-  .misEnlaces a,
-  .fotoCV {
-      width: auto;
-      margin: 0.5em;
+  header h1{
+    font-size: 2em;
   }
 
-  .fotoCV {
-      position: relative;
-      left: auto;
-      top: auto;
-      width: 80%;
-  }
-}
-
-@media (max-width: 480px) {
-  .tituloYretorno {
-      top: auto;
+  header h2{
+    font-size: 0.8em;
   }
 
-  .tituloYretorno a {
-      font-size: 1em;
+  div.misEnlaces{
+    display: none;
   }
 
-  header h1 {
-      font-size: 2em;
+  img.fotoCV{
+    position: static;
+    margin: 0 auto;
+    border-radius: 5em;
+    width: 10em;
+    border: 0.2em solid #AED4EC;
   }
 
-  header h2 {
-      font-size: 1em;
+  /* Nav */
+  nav{
+    padding: 0.5em 0em 1.5em 0em;
+    height: auto;
   }
 
-  nav div p {
-      font-size: 1em;
+  nav div{
+    padding: 0.5em 0em 0.5em 0em;
   }
 
-  nav div a {
-      margin: 0.2em;
+  nav div p{
+    font-size: 0.8em;
   }
 
-  .presentacion div,
-  .habilidades .habilidad,
-  .experiencia li,
-  .estudios li {
-      padding: 0 1em;
+  nav div a{
+    margin: 0.5em;
+    width: 4em;
+    height: 4em;
+  }
+
+  nav div a:hover{
+    width: 5em;
+  }
+
+  /* Presentacion */
+  section.presentacion{
+    padding: 2em 0em 2em 0em;
+  }
+
+  section.presentacion div{
+    padding: 0em 2em 0em 2em;
+  }
+
+  /* Carta de presentación */
+  blockquote{
+    padding: 1em 1.5em 1em 1.5em;
+  }
+
+  /* Habilidades */
+  section.habilidades{
+    padding: 0em 0em 1em 0em;
+  }
+
+  div.fila{
+    flex-direction: column;
+  }
+
+  div.habilidad{
+    width: auto;
+  }
+
+  /* Experiencia */
+  section.experiencia{
+    padding: 0em 0em 0em 0em;
+  }
+
+  ul.detalles li{
+    font-size: 0.8em;
+  }
+
+  /* Estudios */
+  section.estudios{
+    padding: 0em 0em 0em 0em;
+  }
+
+  ul.detalles li{
+    font-size: 0.8em;
+  }
+
+  /* Otros detalles de interes */
+  section.otros{
+    padding: 0em 0em 1em 0em;
+  }
+
+  details ul li{
+    margin-bottom: 1em;
+  }
+
+  /* Contacto */
+  section.contacto{
+    padding: 0em 0em 3em 0em;
+  }
+
+  table.datosContacto{
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  table.datosContacto th,
+  table.datosContacto td{
+   padding: 0.5em;
+    font-size: 0.8em;
   }
 }
