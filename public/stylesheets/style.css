@@ -1,8 +1,124 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+h3{
+  margin-top: 50px;
+  margin-bottom: 2px;
+  color: #523;
 }
 
-a {
-  color: #00B7FF;
+
+h3 i{
+  margin-top: 25px;
+  margin-bottom: 20px;
+  backgroung-color: #523;
+}
+
+
+img{
+width: 260px;
+height: 260px;
+padding: 30px 20px 20px;
+}
+
+
+.resume{
+  width: 21cm;
+  height: 30.7cm;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF9E6;
+  box-sizing: border-box;
+  box-shadow: 0 0 0.3cm rgba(0,0,0,0.5);
+}
+
+aside{
+  float: left;
+  width: 38%;
+  height: 100%;
+  background-color: #D95480;
+}
+
+
+aside h1{
+  text-align: center;
+  margin-bottom: 90px;
+  color: #fff;
+  font-size: 42px;
+}
+
+aside ul{
+  align-items: center;
+
+}
+
+aside ul li{
+  list-style-type: none;
+  color: #FFF;
+  padding: 5px;
+  font-size: medium;
+
+}
+
+aside ul li i{
+  color: #FFF;
+  margin-right: 5px;
+
+}
+
+aside .about{
+  padding-top: 50px;
+}
+aside .about h3{
+  color: #FFF;
+  padding-left: 30px;
+  margin-bottom: 55px;
+}
+
+aside .about i{
+  padding-right: 5px;
+}
+
+aside #intereses{
+  color: white;
+  width: 220px;
+  padding-left: 38px;
+  text-align: justify;
+}
+main{
+  float: right;
+  width: 59%;
+  color: #422E26;
+  padding-right: 10px;
+
+}
+
+main section{
+  padding-left: 10px;
+}
+
+main .encabezado{
+  border-bottom: solid 5px #e8a;
+}
+main i{
+  color: #E8A;
+}
+
+main #estudios{
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+main #estudios ul li{
+  font-size: 13.5px;
+}
+
+main #estudios ul p {
+  font-size: 15px;
+}
+
+main table{
+  padding-top: 20px;
+}
+
+main table td {
+  padding-right: 50px;
+
 }
