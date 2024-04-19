@@ -320,14 +320,30 @@ footer p{
   color: #FFFFFF;
 }
 
-@media (max-width: 600px) {
-  body {
-      font-size: 18px;
+@media only screen and (max-width: 600px) {
+  section.contacto {
+      padding: 0em 1em 3em 1em; /* Ajustar el padding para dispositivos móviles */
   }
-  h1 {
-      font-size: 1.5em;
+
+  table.datosContacto {
+      margin-top: 1em;
+      margin-bottom: 1em;
   }
-  h2 {
-      font-size: 1.2em;
+
+  table.datosContacto th {
+      padding: 0.5em;
+  }
+
+  table.datosContacto td {
+      padding: 0.5em;
+  }
+
+  footer {
+      padding: 2em;
+      border-radius: 0;
+  }
+
+  footer p {
+      font-size: 0.8em;
   }
 }
