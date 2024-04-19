@@ -55,7 +55,7 @@ header{
 }
 
 header h1{
-  font-size: 2.75em;
+  font-size: 2.65em;
 }
 
 header h2{
@@ -320,7 +320,7 @@ footer p{
   color: #FFFFFF;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800gipx) {
   body {
       font-size: 14px;
   }
