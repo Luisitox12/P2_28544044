@@ -321,11 +321,11 @@ footer p{
 }
 
 
-/* Media Queries */
+/* Media */
 
 @media screen and (max-width: 600px) {
   body {
-    font-size: 14px;
+    font-size: 18px;
   }
 
   div.tituloYretorno{
@@ -359,7 +359,7 @@ footer p{
   }
 
   img.fotoCV{
-    position: static;
+    position: center;
     margin: 0 auto;
     border-radius: 5em;
     width: 10em;
