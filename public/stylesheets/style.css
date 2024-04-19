@@ -1,7 +1,7 @@
 h3{
   margin-top: 50px;
   margin-bottom: 2px;
-  color: #523;
+  color: rgb(34, 85, 59);
 }
 
 
@@ -33,7 +33,7 @@ aside{
   float: left;
   width: 38%;
   height: 100%;
-  background-color: #D95480;
+  background-color: #545bd9;
 }
 
 
@@ -85,7 +85,7 @@ aside #intereses{
 main{
   float: right;
   width: 59%;
-  color: #422E26;
+  color: #264142;
   padding-right: 10px;
 
 }
@@ -95,10 +95,10 @@ main section{
 }
 
 main .encabezado{
-  border-bottom: solid 5px #e8a;
+  border-bottom: solid 5px rgb(136, 175, 238);
 }
 main i{
-  color: #E8A;
+  color: rgb(87, 95, 199);
 }
 
 main #estudios{
