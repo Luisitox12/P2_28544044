@@ -320,13 +320,14 @@ footer p{
   color: #FFFFFF;
 }
 
-@media only screen and (max-width: 800gipx) {
+@media (max-width: 600px) {
   body {
-      font-size: 14px;
+      font-size: 18px;
   }
-
-  nav ul li {
-      display: block;
-      margin-bottom: 10px;
+  h1 {
+      font-size: 1.5em;
+  }
+  h2 {
+      font-size: 1.2em;
   }
 }
