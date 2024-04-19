@@ -325,7 +325,7 @@ footer p{
 
 @media screen and (max-width: 600px) {
   body {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   div.tituloYretorno{
@@ -359,7 +359,7 @@ footer p{
   }
 
   img.fotoCV{
-    position: center;
+    position: static;
     margin: 0 auto;
     border-radius: 5em;
     width: 10em;
@@ -392,7 +392,7 @@ footer p{
 
   /* Presentacion */
   section.presentacion{
-    padding: 2em 0em 2em 0em;
+    padding: 7em 0em 2em 0em;
   }
 
   section.presentacion div{
