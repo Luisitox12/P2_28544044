@@ -12,4 +12,7 @@ router.get('/', function(req, res, next) {
 });
 });
 
+router.get('/form', function(req, res, next){
+  res.send("Listo llamo a /form");
+});
 module.exports = router;
