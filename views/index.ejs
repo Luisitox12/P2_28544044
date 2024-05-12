@@ -234,32 +234,42 @@
                 <td>luishidalgops6@gmail.com</td>
               </tr>
             </table>
-
-            <p>De igual forma, pueden contactarme a través del siguiente formulario:</p>
             
-            <form class="formulario" method="POST">
-                <label 
-                    for="nombre" class="nombre">Nombre
-                </label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre">
-        
-                <label 
-                    for="email" class="email">Email
-                </label>
-
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-        
-                <label 
-                    for="exampleTextarea" class="mensaje">Mensaje
-                </label>
-
-                <textarea 
-                    class="form-control" name="mensaje" id="mensaje" rows="7" placeholder="Escriba su mensaje aquí">
-                </textarea>
-        
-                <button class="btn btn-primary" type="submit">Enviar</button>
-
+            <p>De igual forma, pueden contactarme a través del siguiente formulario:</p>
+            <div class="formulario">
+                <form id="contacto-form">
+                  <input type="email" name="email" id="email" placeholder="email" />
+                  <input type="text" name="name" id="name" placeholder="nombre" required />
+                  <textarea
+                    required
+                    name="mensaje"
+                    id="mensaje"
+                    cols="30"
+                    rows="10"
+                    placeholder="comentario"
+                  ></textarea>
+                  <button type="button" id="submit-btn">Enviar</button>
                 </form>
+              </div>
+              
+              <script>
+              document.getElementById('submit-btn').addEventListener('click', async () => {
+                const form = document.getElementById('contacto-form');
+                const formData = new FormData(form);
+              
+                const response = await fetch('/form-contacto', {
+                  method: 'POST',
+                  body: formData,
+                });
+              
+                if (response.ok) {
+                  console.log('Formulario enviado con éxito');
+                } else {
+                  console.error('Error al enviar el formulario');
+                }
+              });
+              </script>
+            
       </section>
       
       
