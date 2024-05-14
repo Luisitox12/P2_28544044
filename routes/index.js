@@ -1,12 +1,10 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+
 const ContactosController = require("../controllers/ContactosController");
 const contactosController = new ContactosController();
 
 const indexController = require("../controllers/indexController.js")
-
-var express = require("express");
-var router = express.Router();
 
 
 /* GET home page. */
