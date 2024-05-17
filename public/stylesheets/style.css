@@ -306,18 +306,18 @@ table.datosContacto td{
   background-color:#FFFFFF;
 }
 
-form.formulario{
+form.formulario {
   display: flex;
   flex-direction: column;
   border-radius: 1em;
-  background-color:#2C94D8;
-  width: 50em;
+  background-color: #2C94D8;
+  width: 100%; 
   align-items: left;
   padding: 0.5em;
 }
 
-form.formulario label{
-  width: 25%;
+form.formulario label {
+  width: 100%; 
   font-weight: bold;
   color: #2C94D8;
   background-color: #FFFFFF;
@@ -326,39 +326,40 @@ form.formulario label{
   margin-bottom: 1em;
 }
 
-form.formulario input{
+form.formulario input,
+form.formulario textarea {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-bottom: 3em;
-  width: 98%;
-  height: 2em;
+  margin-bottom: 1em; 
+  width: 100%; 
+  height: 2em; 
   border-radius: 1em;
-  padding-left: 1em;
 }
 
-form.formulario textarea{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  width: 98%;
-  padding-top: 1em;
-  margin-bottom: 1em;
-  border-radius: 1em;
-  padding-left: 1em;
-  resize: none;
+form.formulario textarea {
+ padding-top: 1em; 
+ resize:none; 
 }
 
-form.formulario button{
-  background-color: #FFFFFF;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1em;
-  color: #2C94D8;
-  font-weight: bold;
-  border: #FFFFFF;
-  padding: 1em 1.5em 1em 1.5em;
-  border-radius: 1em;
-  width: 50%;
+form.formulario button {
+ background-color:#FFFFFF; 
+ font-family:"Verdana", "Geneva", "Tahoma", sans-serif; 
+ font-size:.9rem; 
+ color:#2C94D8; 
+ font-weight:bold; 
+ border:#FFFFFF; 
+ padding:.7rem .9rem .7rem .9rem; 
+ border-radius:.5rem; 
+ width:auto; 
 }
 
-form.formulario button:hover{
-  background-color: #d6efff;
+
+@media only screen and (max-width : 768px) {
+   form.formulario label,
+   form.formulario input,
+   form.formulario textarea,
+   form.formulario button {
+       width:auto !important; 
+   }
 }
 
 footer{
