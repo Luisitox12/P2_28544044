@@ -27,8 +27,6 @@ class ContactosController {
 
     console.log(contactos);
 
-    // Redireccionar al usuario a una página de confirmación
-    res.redirect("/");
   }
 }
 
