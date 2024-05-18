@@ -266,23 +266,6 @@
       </p>
       </footer>
 
-      <script>
-        document.getElementById('submit-btn').addEventListener('click', async () => {
-          const form = document.getElementById('contacto-form');
-          const formData = new FormData(form);
-        
-          const response = await fetch('/form-contacto', {
-            method: 'POST',
-            body: formData,
-          });
-        
-          if (response.ok) {
-            console.log('Formulario enviado con éxito');
-          } else {
-            console.error('Error al enviar el formulario');
-          }
-        });
-        </script>
 
       </body>
 
