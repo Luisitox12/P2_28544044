@@ -1,8 +1,5 @@
 const ContactosModel = require("../models/ContactosModel");
 
-const successMensaje = document.getElementById("successMensaje");
-const errorMensaje = document.getElementById("errorMensaje");
-
 class ContactosController {
   constructor() {
     this.contactosModel = new ContactosModel();
