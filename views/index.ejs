@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       </head>
       
       <body>
@@ -239,7 +240,7 @@
             
             <!--EVALUACION 2 FORMULARIO-->
 
-             <class="formulario">
+             <div class="formulario">
               <form class="formulario" action="/form-contacto" method="POST">
                 <label for="nombre" class="nombre">Nombre</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
@@ -252,26 +253,9 @@
     
             <button class="btn btn-primary" type="submit">Enviar</button>
             </form>
-
-            <script>
-                document.getElementById('submit-btn').addEventListener('click', async () => {
-                  const form = document.getElementById('contacto-form');
-                  const formData = new FormData(form);
-                
-                  const response = await fetch('/form-contacto', {
-                    method: 'POST',
-                    body: formData,
-                  });
-                
-                  if (response.ok) {
-                    console.log('Formulario enviado con éxito');
-                  } else {
-                    console.error('Error al enviar el formulario');
-                  }
-                });
-                </script>
-
               </div>
+
+              <div id="success-message"></div>
       </section>
      
 
@@ -283,6 +267,27 @@
           Imágenes e iconos empleados son importados de manera externa.
       </p>
       </footer>
+
+      <script>
+        $(document).ready(function() {
+          $('#contact-form').on('submit', function(e) {
+            e.preventDefault();
+        
+            $.ajax({
+              type: 'POST',
+              url: '/contactos',
+              data: $(this).serialize(),
+              success: function(data) {
+                $('#success-message').text(data);
+              },
+              error: function(error) {
+                console.log(error);
+              }
+            });
+          });
+        });
+        </script>
+
       </body>
 
       </html>
