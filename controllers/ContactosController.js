@@ -12,7 +12,7 @@ class ContactosController {
     const { email, name, mensaje } = req.body;
 
     if (!email || !name || !mensaje) {
-      errorMensaje.style.display = "block";
+      res.status(400).send("Faltan campos requeridos");
       return;
     }
 
@@ -27,6 +27,8 @@ class ContactosController {
 
     console.log(contactos);
 
+    // Redireccionar al usuario a una página de confirmación
+    res.redirect("/");
   }
 }
 
