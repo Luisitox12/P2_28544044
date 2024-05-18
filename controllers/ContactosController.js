@@ -1,5 +1,8 @@
 const ContactosModel = require("../models/ContactosModel");
 
+const successMensaje = document.getElementById("successMensaje");
+const errorMensaje = document.getElementById("errorMensaje");
+
 class ContactosController {
   constructor() {
     this.contactosModel = new ContactosModel();
@@ -12,7 +15,7 @@ class ContactosController {
     const { email, name, mensaje } = req.body;
 
     if (!email || !name || !mensaje) {
-      res.status(400).send("Faltan campos requeridos");
+      errorMensaje.style.display = "block";
       return;
     }
 
