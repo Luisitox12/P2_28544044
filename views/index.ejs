@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         </style>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       </head>
       
       <body>
@@ -255,7 +254,6 @@
             </form>
               </div>
 
-              <div id="success-message"></div>
       </section>
      
 
@@ -269,22 +267,20 @@
       </footer>
 
       <script>
-        $(document).ready(function() {
-          $('#formulario').on('submit', function(e) {
-            e.preventDefault();
+        document.getElementById('submit-btn').addEventListener('click', async () => {
+          const form = document.getElementById('contacto-form');
+          const formData = new FormData(form);
         
-            $.ajax({
-              type: 'POST',
-              url: '/contactos',
-              data: $(this).serialize(),
-              success: function(data) {
-                $('#success-message').text(data);
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            });
+          const response = await fetch('/form-contacto', {
+            method: 'POST',
+            body: formData,
           });
+        
+          if (response.ok) {
+            console.log('Formulario enviado con éxito');
+          } else {
+            console.error('Error al enviar el formulario');
+          }
         });
         </script>
 
