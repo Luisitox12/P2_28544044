@@ -11,8 +11,6 @@ var app = express();
 //envio de correo
 const transporter = require('./models/mail');
 
-const app = express();
-
 app.post('/register', (req, res) => {
   const { name, email } = req.body;
 
