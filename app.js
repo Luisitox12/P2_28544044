@@ -9,7 +9,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 //envio de correo
-const express = require('express');
 const transporter = require('./models/mail');
 
 const app = express();
