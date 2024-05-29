@@ -9,7 +9,7 @@ class ContactosController {
       service: 'gmail',
       auth: {
         user: 'pruebadeprogra@gmail.com',
-        pass: 'Venecia21.'
+        pass: 'Venecia30.'
       }
     });
   }
