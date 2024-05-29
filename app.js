@@ -8,6 +8,37 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+//envio de correo
+const express = require('express');
+const transporter = require('./models/mail');
+
+const app = express();
+
+app.post('/register', (req, res) => {
+  const { name, email } = req.body;
+
+  const mailOptions = {
+    from: 'pruebadeprogra@gmail.com',
+    to: 'luishidalgops6@gmail.com', // Add more recipients as needed
+    subject: 'New user registration',
+    text: `Name: ${name}\nEmail: ${email}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Error sending email');
+    } else {
+      console.log(`Email sent: ${info.response}`);
+      res.status(200).send('User registered and email sent');
+    }
+  });
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+//fin envio de correo
 
 /* const db = require('./conf/db'); */
 const ContactosController = require('./controllers/ContactosController');
