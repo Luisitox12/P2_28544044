@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 //envio de correo
-const transporter = require('./models/mail');
+const transporter = require('./routes/mail');
 
 app.post('/register', (req, res) => {
   const { name, email } = req.body;
