@@ -1,5 +1,8 @@
 const ContactosModel = require("../models/ContactosModel");
-const nodemailer = require('nodemailer');
+const nodemailer = require ('nodemailer');
+const EMAILU = process.env.EMAILU;
+const EMAILP = process.env.EMAILP;
+const EMAIL1 = process.env.EMAIL1;
 
 class ContactosController {
   constructor() {
@@ -8,54 +11,78 @@ class ContactosController {
     this.transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'pruebadeprogra@gmail.com',
-        pass: 'xepg hdgn xtml zpzb'
+        user: EMAILU,
+        pass: EMAILP
       }
     });
   }
 
-  //funcion enviar correo
-  enviarCorreo(email, nombre, mensaje) {
+   //funcion enviar correo
+   enviarCorreo(email, nombre, mensaje, EMAILU, EMAIL1) {
     const mailOptions = {
-      from: 'pruebadeprogra@gmail.com',
-      to: 'luishidalgops6@gmail.com', // Agrega más destinatarios si es necesario
+      from: EMAILU,
+      to: EMAIL1, // Agrega más destinatarios si es necesario
       subject: 'Nuevo registro de usuario',
-      text: `Nombre: ${nombre}\nEmail: ${email}\nMensaje: ${mensaje}`
+      text: 'Nombre: '+nombre+'\nEmail: '+email+'\nMensaje: '+mensaje
     };
-  
     this.transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log(error);
       } else {
-        console.log(`Correo enviado: ${info.response}`);
+        console.log('Correo enviado: ${info.response}');
       }
     });
   }
 // fin funcion enviar correo
 
-  async add(req, res) {
-    // Validar los datos del formulario
 
-    const { email, name, mensaje } = req.body;
 
-    if (!email || !name || !mensaje) {
-      res.status(400).send("Faltan campos requeridos");
-      return;
-    }
-
-    // Guardar los datos del formulario
-    const ip = req.ip;
-    const fecha = new Date().toISOString();
-
-   
+  async obtenerIp() {
     try {
-      await this.contactosModel.crearContacto(email, name, mensaje, ip, fecha);
-      this.enviarCorreo(email, name, mensaje);
-      res.status(200).send("Tus datos se han enviado correctamente.");
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data.ip; // Retorna la ip
     } catch (error) {
-      res.status(500).send("Ha ocurrido un error al procesar tus datos.");
+      console.error('Error al obtener la ip:', error);
+      return null; // Retorna null si hay un error
     }
   }
-}
+
+  async obtenerPais(ip) {
+    try {
+      const response = await fetch('https://ipinfo.io/'+ip+'?token=a3fed418af16ca');
+      const data = await response.json();
+      return data.country; // Retorna el país
+    } catch (error) {
+      console.error('Error al obtener el país:', error);
+      return null; // Retorna null si hay un error
+    }
+  }
+
+  
+  
+  async add(req, res) {
+    // Validar los datos del formulario
+      const { name, email, mensaje } = req.body;
+  
+  
+
+    // Guardar los datos del formulario
+    const ip = await this.obtenerIp();
+    const fecha = new Date().toISOString();
+    const pais = await this.obtenerPais(ip);
+
+      await this.contactosModel.crearContacto(email, name, mensaje, ip, fecha, pais);
+
+      const contactos = await this.contactosModel.obtenerAllContactos();
+
+      await this.enviarCorreo(email, name, mensaje, EMAILU, EMAIL1);
+  
+      console.log(contactos);
+  
+      // Enviar mensaje de confirmacion
+      res.send("Tu mensaje fue enviado con exito, Se ha enviado un correo electrónico de confirmación.");
+    }
+  }
 
 module.exports = ContactosController;
