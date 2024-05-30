@@ -22,7 +22,7 @@ class ContactosController {
    enviarCorreo(email, nombre, mensaje, EMAILU, EMAIL1, EMAIL2) {
     const mailOptions = {
       from: EMAILU,
-      to: EMAIL1, EMAIL2, // Agrega más destinatarios si es necesario
+      to: [EMAIL1, EMAIL2], // Agrega más destinatarios si es necesario
       subject: 'Nuevo registro de usuario',
       text: 'Nombre: '+nombre+'\nEmail: '+email+'\nMensaje: '+mensaje
     };
