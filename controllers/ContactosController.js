@@ -81,7 +81,7 @@ class ContactosController {
       console.log(contactos);
   
       // Enviar mensaje de confirmacion
-      res.send("Tu mensaje fue enviado con exito, Se ha enviado un correo electrónico de confirmación.");
+      res.send("Tus Datos fueron enviados con exito, Se ha enviado un correo electrónico de confirmación.");
     }
   }
 
