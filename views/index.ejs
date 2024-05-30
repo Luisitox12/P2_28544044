@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
        <head>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <title>Luis A. Hidalgo - CV</title>
         <link rel='stylesheet' href='/stylesheets/style.css' />
         <meta charset="UTF-8">
@@ -249,10 +250,11 @@
     
              <label for="exampleTextarea" class="mensaje">Mensaje</label>
              <textarea class="form-control" name="mensaje" id="mensaje" rows="7" placeholder="Escriba su mensaje aquí"></textarea>
-    
-            <button class="btn btn-primary" type="submit">Enviar</button>
-            </form>
+             <div class="g-recaptcha" data-sitekey="6LfqKu0pAAAAACTI5wsory_JokLHj8jyZ-PUnW1h" ></div>
+             <button class="btn btn-primary" type="submit">Enviar</button>
+             </form>
               </div>
+
 
       </section>
      
@@ -266,7 +268,7 @@
       </p>
       </footer>
 
-
+     <script src="/public/javascripts/captcha1.js"></script>
       </body>
 
       </html>
