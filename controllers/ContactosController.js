@@ -3,6 +3,7 @@ const nodemailer = require ('nodemailer');
 const EMAILU = process.env.EMAILU;
 const EMAILP = process.env.EMAILP;
 const EMAIL1 = process.env.EMAIL1;
+const EMAIL2 = process.env.EMAIL2;
 
 class ContactosController {
   constructor() {
@@ -18,10 +19,10 @@ class ContactosController {
   }
 
    //funcion enviar correo
-   enviarCorreo(email, nombre, mensaje, EMAILU, EMAIL1) {
+   enviarCorreo(email, nombre, mensaje, EMAILU, EMAIL1, EMAIL2) {
     const mailOptions = {
       from: EMAILU,
-      to: EMAIL1, // Agrega más destinatarios si es necesario
+      to: EMAIL1, EMAIL2, // Agrega más destinatarios si es necesario
       subject: 'Nuevo registro de usuario',
       text: 'Nombre: '+nombre+'\nEmail: '+email+'\nMensaje: '+mensaje
     };
@@ -76,7 +77,7 @@ class ContactosController {
 
       const contactos = await this.contactosModel.obtenerAllContactos();
 
-      await this.enviarCorreo(email, name, mensaje, EMAILU, EMAIL1);
+      await this.enviarCorreo(email, name, mensaje, EMAILU, EMAIL1, EMAIL2);
   
       console.log(contactos);
   
