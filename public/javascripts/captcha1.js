@@ -5,4 +5,4 @@ function verificarCaptcha(event) {
         event.preventDefault();
     }
 }
-document.getElementById("form").addEventListener("submit", verificarCaptcha);
+document.getElementById("formulario").addEventListener("submit", verificarCaptcha);
