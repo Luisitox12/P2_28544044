@@ -1,24 +1,10 @@
-<h1>Contactos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>Mensaje</th>
-      <th>IP</th>
-      <th>País</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% contactos.forEach(function(contacto) { %>
-    <tr>
-      <td><%= contacto.name %></td>
-      <td><%= contacto.email %></td>
-      <td><%= contacto.mensaje %></td>
-      <td><%= contacto.ip %></td>
-      <td><%= contacto.pais %></td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p>Esta es la página de contactos.</p>
+</body>
+</html>
