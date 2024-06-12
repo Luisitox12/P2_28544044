@@ -5,6 +5,29 @@
 </head>
 <body>
   <h1><%= title %></h1>
-  <p>Esta es la página de contactos.</p>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Mensaje</th>
+        <th>IP</th>
+        <th>Fecha</th>
+        <th>País</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(function(row) { %>
+        <tr>
+          <td><%= row.email %></td>
+          <td><%= row.name %></td>
+          <td><%= row.mensaje %></td>
+          <td><%= row.ip %></td>
+          <td><%= row.fecha %></td>
+          <td><%= row.pais %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
 </body>
 </html>
