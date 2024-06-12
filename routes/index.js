@@ -12,6 +12,5 @@ router.get("/", indexController);
 
 router.post("/form-contacto", contactosController.add);
 
-router.get('/contactos', ContactosController.index);
 
 module.exports = router;
