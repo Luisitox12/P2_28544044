@@ -60,7 +60,10 @@ class ContactosController {
     }
   }
 
-  
+  async index(req, res) {
+    const contactos = await this.contactosModel.obtenerAllContactos();
+    res.render('contactos', { contactos });
+  }
   
   async add(req, res) {
     // Validar los datos del formulario
