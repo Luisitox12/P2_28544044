@@ -10,4 +10,18 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
+// Crear tabla de usuarios si no existe
+db.serialize(function() {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL
+    )
+  `);
+});
+
+// Cierra la conexión cuando se termina de utilizar
+db.close();
+
 module.exports = db;
