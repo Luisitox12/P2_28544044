@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../database');
+const db = require('../conf/database');
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const session = require('express-session');
