@@ -15,11 +15,11 @@ router.post('/register', async function(req, res, next) {
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.run('INSERT INTO users (username, password) VALUES (?,?)', [username, hashedPassword]);
     req.flash('success_msg', 'You are now registered and can log in');
-    res.redirect('/auth/login');
+    res.redirect('/views/login.ejs');
   } catch (err) {
     console.error(err);
     req.flash('error_msg', 'Datos Invalidos. Porfavor intente denuevo.');
-    res.redirect('/auth/register');
+    res.redirect('/views/register.ejs');
   }
 });
 
