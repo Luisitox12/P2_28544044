@@ -3,9 +3,6 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var db = require('../conf/database'); // Ajusta según tu configuración de base de datos
-var flash = require('connect-flash');
-
-router.use(flash()); // Agregamos connect-flash al router
 
 // Página de registro
 router.get('/register', function(req, res, next) {
