@@ -33,6 +33,9 @@ router.post('/login', async function(req, res, next) {
   const { username, password } = req.body;
   try {
     const user = await db.get('SELECT * FROM users WHERE username =?', [username]);
+    console.log('User:', user); // Verificar que el usuario esté siendo devuelto correctamente
+    console.log('Password:', password); // Verificar que la contraseña esté siendo pasada correctamente
+    console.log('User password:', user.password); // Verificar que la contraseña hasheada esté siendo devuelta correctamente
     if (!user) {
       req.flash('error_msg', 'No user found with that username');
       return res.redirect('/auth/login');
