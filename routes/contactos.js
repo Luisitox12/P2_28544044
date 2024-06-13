@@ -4,7 +4,7 @@ var db = require('../conf/database');
 
 /* GET contactos page. */
 router.get('/', function(req, res, next) {
-  const query = 'SELECT email, name, mensaje, ip, fecha, pais FROM datos.db'; // Reemplaza 'your_table_name' con el nombre de tu tabla
+  const query = 'SELECT email, name, mensaje, ip, fecha, pais FROM contactos'; // Reemplaza 'your_table_name' con el nombre de tu tabla
 
   db.all(query, [], (err, rows) => {
     if (err) {
