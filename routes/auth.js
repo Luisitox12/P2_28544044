@@ -1,3 +1,33 @@
+var express = require('express');
+var router = express.Router();
+var bcrypt = require('bcrypt');
+var db = require('../conf/database'); // Ajusta según tu configuración de base de datos
+
+// Página de registro
+router.get('/register', function(req, res, next) {
+  res.render('register', { title: 'Register' });
+});
+
+// Manejar registro
+router.post('/register', async function(req, res, next) {
+  const { username, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await db.run('INSERT INTO users (username, password) VALUES (?,?)', [username, hashedPassword]);
+    req.flash('success_msg', 'You are now registered and can log in');
+    res.redirect('/auth/login');
+  } catch (err) {
+    console.error(err);
+    req.flash('error_msg', 'Datos Invalidos. Porfavor intente denuevo.');
+    res.redirect('/auth/register');
+  }
+});
+
+// Página de inicio de sesión
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login' });
+});
+
 router.post('/login', async function(req, res, next) {
   const { username, password } = req.body;
   try {
