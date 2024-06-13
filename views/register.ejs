@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+</head>
+<body>
+  <h1>Register</h1>
+  <% if (error_msg) { %>
+    <p><%= error_msg %></p>
+  <% } %>
+  <form action="/auth/register" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
