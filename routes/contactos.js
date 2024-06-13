@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../conf/database');
 
-
 // Middleware de autenticación
 function ensureAuthenticated(req, res, next) {
   if (req.session && req.session.user) {

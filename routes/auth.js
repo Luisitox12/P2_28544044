@@ -1,3 +1,4 @@
+// Código 1: auth.js
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
@@ -13,7 +14,7 @@ router.post('/register', async function(req, res, next) {
   const { username, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    await db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword]);
+    await db.run('INSERT INTO users (username, password) VALUES (?,?)', [username, hashedPassword]);
     req.flash('success_msg', 'You are now registered and can log in');
     res.redirect('/auth/login');
   } catch (err) {
@@ -32,7 +33,7 @@ router.get('/login', function(req, res, next) {
 router.post('/login', async function(req, res, next) {
   const { username, password } = req.body;
   try {
-    const user = await db.get('SELECT * FROM users WHERE username = ?', [username]);
+    const user = await db.get('SELECT * FROM users WHERE username =?', [username]);
     if (!user) {
       req.flash('error_msg', 'No user found with that username');
       return res.redirect('/auth/login');
@@ -55,15 +56,19 @@ router.post('/login', async function(req, res, next) {
     res.redirect('/auth/login');
   }
 });
-  
-  // Manejar cierre de sesión
-  router.get('/logout', function(req, res) {
+
+// Manejar cierre de sesión
+router.get('/logout', function(req, res) {
+  if (req.session) {
     req.session.destroy(err => {
       if (err) {
         return next(err);
       }
       res.redirect('/auth/login');
     });
-  });
-  
-  module.exports = router;
+  } else {
+    res.redirect('/auth/login');
+  }
+});
+
+module.exports = router;
