@@ -1,31 +1,23 @@
-var express = require('express');
-var router = express.Router();
-var bcrypt = require('bcrypt');
-var db = require('../conf/database'); // Ajusta según tu configuración de base de datos
+const express = require('express');
+const router = express.Router();
+const db = require('../database');
+const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
+const session = require('express-session');
 
-// Página de registro
-router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register' });
-});
+router.use(session({
+  secret: 'mysecret',
+  resave: false,
+  saveUninitialized: false
+}));
 
-// Manejar registro
-router.post('/register', async function(req, res, next) {
-  const { username, password } = req.body;
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await db.run('INSERT INTO users (username, password) VALUES (?,?)', [username, hashedPassword]);
-    req.flash('success_msg', 'You are now registered and can log in');
-    res.redirect('/auth/login');
-  } catch (err) {
-    console.error(err);
-    req.flash('error_msg', 'Datos Invalidos. Porfavor intente denuevo.');
-    res.redirect('/auth/register');
-  }
-});
+router.use(flash());
 
-// Página de inicio de sesión
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
+  res.render('login', {
+    title: 'Login',
+    error_msg: req.flash('error_msg')
+  });
 });
 
 router.post('/login', async function(req, res, next) {
@@ -36,22 +28,46 @@ router.post('/login', async function(req, res, next) {
       req.flash('error_msg', 'No user found with that username');
       return res.redirect('/auth/login');
     }
-    console.log('User:', user); // Verificar que el usuario esté siendo devuelto correctamente
+    console.log('User:', user);
     if (!user.password) {
       console.error('User password is undefined');
       req.flash('error_msg', 'Something went wrong. Please try again.');
       return res.redirect('/auth/login');
     }
-    console.log('User password:', user.password); // Verificar que la contraseña hasheada esté siendo devuelta correctamente
+    console.log('User password:', user.password);
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       req.flash('error_msg', 'Incorrect password');
       return res.redirect('/auth/login');
     }
-    //...
+    req.session.user = user;
+    res.redirect('/dashboard');
   } catch (err) {
     console.error(err);
     req.flash('error_msg', 'Something went wrong. Please try again.');
     res.redirect('/auth/login');
   }
 });
+
+router.get('/register', function(req, res, next) {
+  res.render('register', {
+    title: 'Register',
+    error_msg: req.flash('error_msg')
+  });
+});
+
+router.post('/register', async function(req, res, next) {
+  const { username, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await db.run('INSERT INTO users (username, password) VALUES (?,?)', [username, hashedPassword]);
+    req.flash('success_msg', 'Registration successful. Please login.');
+    res.redirect('/auth/login');
+  } catch (err) {
+    console.error(err);
+    req.flash('error_msg', 'Something went wrong. Please try again.');
+    res.redirect('/auth/register');
+  }
+});
+
+module.exports = router;
