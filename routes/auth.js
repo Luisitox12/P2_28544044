@@ -41,7 +41,7 @@ router.post('/login', async function(req, res, next) {
       return res.redirect('/auth/login');
     }
     req.session.user = user;
-    res.redirect('/dashboard');
+    res.redirect('/contactos');
   } catch (err) {
     console.error(err);
     req.flash('error_msg', 'Something went wrong. Please try again.');
