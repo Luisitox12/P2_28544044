@@ -6,32 +6,32 @@ const flash = require('connect-flash');
 const session = require('express-session');
 
 // Página de registro
-router.get('/auth/register', function(req, res, next) {
+router.get('/register', function(req, res, next) {
   res.render('register', { title: 'Register' });
 });
 
 // Manejar registro
-router.post('/auth/register', async function(req, res, next) {
+router.post('/register', async function(req, res, next) {
   const { username, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.run('INSERT INTO users (username, password) VALUES (?,?)', [username, hashedPassword]);
     req.flash('success_msg', 'You are now registered and can log in');
-    res.redirect('/auth/login');
+    res.redirect('/login');
   } catch (err) {
     console.error(err);
     req.flash('error_msg', 'Datos Invalidos. Porfavor intente denuevo.');
-    res.redirect('/auth/register');
+    res.redirect('/register');
   }
 });
 
 // Página de inicio de sesión
-router.get('/auth/login', function(req, res, next) {
+router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Login' });
 });
 
 // Manejar inicio de sesión
-router.post('/auth/login', async function(req, res, next) {
+router.post('/login', async function(req, res, next) {
   const { username, password } = req.body;
   try {
     const user = await db.get('SELECT * FROM users WHERE username =?', [username]);
@@ -40,24 +40,24 @@ router.post('/auth/login', async function(req, res, next) {
     console.log('User password:', user.password); // Verificar que la contraseña hasheada esté siendo devuelta correctamente
     if (!user) {
       req.flash('error_msg', 'No user found with that username');
-      return res.redirect('/auth/login');
+      return res.redirect('/login');
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       req.flash('error_msg', 'Incorrect password');
-      return res.redirect('/auth/login');
+      return res.redirect('/login');
     }
     if (!req.session) {
       console.error('Error setting user in session');
       req.flash('error_msg', 'Error setting user in session');
-      return res.redirect('/auth/login');
+      return res.redirect('/login');
     }
     req.session.user = user;
     res.redirect('/contactos');
   } catch (err) {
     console.error(err);
     req.flash('error_msg', 'Something went wrong. Please try again.');
-    res.redirect('/auth/login');
+    res.redirect('/login');
   }
 });
 
@@ -68,10 +68,10 @@ router.get('/logout', function(req, res) {
       if (err) {
         return next(err);
       }
-      res.redirect('/auth/login');
+      res.redirect('/login');
     });
   } else {
-    res.redirect('/auth/login');
+    res.redirect('/login');
   }
 });
 
