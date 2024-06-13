@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../conf/database');
+var flash = require('connect-flash');
+
+router.use(flash());
 
 // Middleware de autenticación
 function ensureAuthenticated(req, res, next) {
