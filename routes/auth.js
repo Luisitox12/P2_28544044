@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var db = require('../conf/database'); // Ajusta según tu configuración de base de datos
-const flash = require('connect-flash');
-const session = require('express-session');
-
 
 // Página de registro
 router.get('/register', function(req, res, next) {
