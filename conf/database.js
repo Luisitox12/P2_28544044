@@ -21,6 +21,6 @@ db.serialize(function() {
   `);
 });
 
-// Cierra la conexión cuando se termina de utilizar
+
 
 module.exports = db;
