@@ -39,17 +39,22 @@ router.post('/login', async function(req, res, next) {
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        req.flash('error_msg', 'Incorrect password');
-        return res.redirect('/auth/login');
-      }
-      req.session.user = user;
-      res.redirect('/contactos');
-    } catch (err) {
-      console.error(err);
-      req.flash('error_msg', 'Something went wrong. Please try again.');
-      res.redirect('/auth/login');
+      req.flash('error_msg', 'Incorrect password');
+      return res.redirect('/auth/login');
     }
-  });
+    if (!req.session) {
+      console.error('Error setting user in session');
+      req.flash('error_msg', 'Error setting user in session');
+      return res.redirect('/auth/login');
+    }
+    req.session.user = user;
+    res.redirect('/contactos');
+  } catch (err) {
+    console.error(err);
+    req.flash('error_msg', 'Something went wrong. Please try again.');
+    res.redirect('/auth/login');
+  }
+});
   
   // Manejar cierre de sesión
   router.get('/logout', function(req, res) {

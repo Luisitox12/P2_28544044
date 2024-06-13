@@ -5,7 +5,7 @@ var db = require('../conf/database');
 
 // Middleware de autenticación
 function ensureAuthenticated(req, res, next) {
-  if (req.session.user) {
+  if (req.session && req.session.user) {
     return next();
   } else {
     req.flash('error_msg', 'Por favor Inicie Sesion para ver los datos');
