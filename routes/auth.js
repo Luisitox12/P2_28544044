@@ -19,7 +19,7 @@ router.post('/register', async function(req, res, next) {
     res.redirect('/auth/login');
   } catch (err) {
     console.error(err);
-    req.flash('error_msg', 'Something went wrong. Please try again.');
+    req.flash('error_msg', 'Datos Invalidos. Porfavor intente denuevo.');
     res.redirect('/auth/register');
   }
 });
