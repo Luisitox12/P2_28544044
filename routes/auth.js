@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../conf/database');
 var bcrypt = require('bcrypt');
-
 
 // Usuario predeterminado
 const defaultUser = {
