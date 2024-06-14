@@ -1,4 +1,16 @@
 /* Estilos generales */
+/* Estilos para el título "Login" */
+h1 {
+    text-align: center; /* Centra el título */
+    margin-bottom: 20px; /* Agrega un espacio entre el título y el formulario */
+  }
+  
+  /* Estilos para el enlace de Google */
+  a {
+    display: block; /* Convierte el enlace en un bloque para que ocupe toda la anchura */
+    text-align: center; /* Centra el enlace */
+    margin-top: 20px; /* Agrega un espacio entre el formulario y el enlace */
+  }
 
 * {
     box-sizing: border-box;
