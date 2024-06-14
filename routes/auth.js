@@ -2,14 +2,19 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 
-// Usuario predeterminado
+const bcrypt = require('bcrypt');
+
 const defaultUser = {
   username: 'admin',
-  password: 'password123' // Debes hashear esta contraseña con bcrypt
+  password: 'password123'
 };
 
-// Hash de la contraseña predeterminada
-const hashedPassword = bcrypt.hashSync(defaultUser.password, 10);
+const saltRounds = 10; // número de rondas de hash
+const hashedPassword = bcrypt.hashSync(defaultUser.password, saltRounds);
+
+console.log(hashedPassword); // salida: $2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+
+defaultUser.password = hashedPassword;
 
 
 // Página de inicio de sesión
