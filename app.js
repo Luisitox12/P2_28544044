@@ -7,7 +7,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var flash = require('connect-flash');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-const passport = require('passport');
+var passport = require('passport');
 var app = express();
 
 // view engine setup
