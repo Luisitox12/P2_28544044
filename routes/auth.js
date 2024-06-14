@@ -32,7 +32,7 @@ router.get('/login', function(req, res, next) {
 router.post('/login', async function(req, res, next) {
   const { username, password } = req.body;
   try {
-    const user = await db.get('SELECT * FROM users WHERE username = ?');
+    const user = await db.get('SELECT * FROM users WHERE username =?', [username]);
     console.log('User:', user);
     console.log('User.data:', user.data);
     if (!user) {
