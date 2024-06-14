@@ -37,7 +37,8 @@ router.post('/login', async function(req, res, next) {
       req.flash('error_msg', 'No user found with that username');
       return res.redirect('/auth/login');
     }
-    const isMatch = await bcrypt.compare(password, user.password);
+    const hashedPassword = user.data.password; // Accede a la contraseña hasheada
+    const isMatch = await bcrypt.compare(password, hashedPassword);
     if (!isMatch) {
       req.flash('error_msg', 'Incorrect password');
       return res.redirect('/auth/login');
