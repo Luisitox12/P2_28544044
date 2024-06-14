@@ -11,6 +11,13 @@ const defaultUser = {
 // Hash de la contraseña predeterminada
 const hashedPassword = bcrypt.hashSync(defaultUser.password, 10);
 
+
+// Página de inicio de sesión
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login' });
+});
+
+
 // Manejar inicio de sesión
 router.post('/login', async function(req, res, next) {
     if (req.session.user) {
