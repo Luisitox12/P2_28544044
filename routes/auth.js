@@ -33,6 +33,8 @@ router.post('/login', async function(req, res, next) {
   const { username, password } = req.body;
   try {
     const user = await db.get('SELECT * FROM users WHERE username = ?', [username]);
+    console.log('User:', user);
+    console.log('User.data:', user.data);
     if (!user) {
       req.flash('error_msg', 'No user found with that username');
       return res.redirect('/auth/login');
