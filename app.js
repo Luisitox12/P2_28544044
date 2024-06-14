@@ -4,10 +4,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var session = require('express-session');
 var flash = require('connect-flash');
-
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var app = express();
 
 // view engine setup
@@ -42,6 +41,27 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var contactosRouter = require('./routes/contactos');
 var authRouter = require('./routes/auth'); // Nueva ruta para autenticación
+var passport = require('passport');
+
+// Configuración de la estrategia de Google OAuth
+passport.use(new GoogleStrategy({
+  clientID: process.env.USER_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: process.env.CALLBACK_URL
+},
+function(accessToken, refreshToken, profile, done) {
+  return done(null, profile);
+}));
+
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
+
+app.get('/auth/google/callback', passport.authenticate('google', {
+  failureRedirect: '/login'
+}), (req, res) => {
+  res.redirect('/contactos');
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
