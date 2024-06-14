@@ -7,7 +7,7 @@ function ensureAuthenticated(req, res, next) {
   if (req.session && req.session.user) {
     return next();
   } else {
-    req.flash('error_msg', 'Por favor Inicie Sesion para ver los datos');
+    req.flash('error_msg', 'Por favor inicie sesión para ver los datos');
     res.redirect('/auth/login');
   }
 }
