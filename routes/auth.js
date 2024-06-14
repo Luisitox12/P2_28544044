@@ -40,6 +40,9 @@ router.post('/login', async function(req, res, next) {
       return res.redirect('/auth/login');
     }
 
+    if (Array.isArray(user) && user.length > 0) {
+      user = user[0];
+    }
     if (typeof user!== 'object') {
       req.flash('error_msg', 'Error al obtener usuario');
       return res.redirect('/auth/login');
