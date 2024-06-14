@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../conf/database');
 var bcrypt = require('bcrypt');
 
+
 // Usuario predeterminado
 const defaultUser = {
   username: 'admin',
@@ -14,6 +15,11 @@ const hashedPassword = bcrypt.hashSync(defaultUser.password, 10);
 
 // Manejar inicio de sesión
 router.post('/login', async function(req, res, next) {
+    if (req.session.user) {
+      // La sesión ya existe, redirigir al usuario a la página de inicio
+      res.redirect('/');
+    } else {
+      // Crear una nueva sesión
   const { username, password } = req.body;
   if (username === defaultUser.username) {
     const isMatch = await bcrypt.compare(password, hashedPassword);
@@ -27,6 +33,7 @@ router.post('/login', async function(req, res, next) {
   } else {
     req.flash('error_msg', 'Usuario no encontrado');
     res.redirect('/auth/login');
+  }
   }
 });
 
