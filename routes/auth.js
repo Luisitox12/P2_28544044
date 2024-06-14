@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var bcrypt = require('bcrypt');
-
 const bcrypt = require('bcrypt');
 
 const defaultUser = {
