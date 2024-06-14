@@ -45,9 +45,8 @@ router.get('/google/callback', passport.authenticate('google', {
   failureRedirect: '/login',
   successRedirect: '/contactos' // <--- Agregué esta línea
 }), (req, res) => {
-  // No es necesario este callback, puedes eliminarlo
-  // req.session.user = req.user;
-  // res.redirect('/contactos');
+  console.log('Autenticación exitosa:', req.user);
+  res.redirect('/contactos');
 });
 
 // Manejar cierre de sesión
