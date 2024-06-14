@@ -33,13 +33,10 @@ router.post('/login', async function(req, res, next) {
   const { username, password } = req.body;
   try {
     const user = await db.get('SELECT * FROM users WHERE username =?', [username]);
-    console.log('User:', user);
-    console.log('User.data:', user.data);
     if (!user) {
       req.flash('error_msg', 'No user found with that username');
       return res.redirect('/auth/login');
     }
-
     if (Array.isArray(user) && user.length > 0) {
       user = user[0];
     }
@@ -59,8 +56,7 @@ router.post('/login', async function(req, res, next) {
       req.flash('error_msg', 'Error al obtener contraseña de usuario');
       return res.redirect('/auth/login');
     }
-
-    const hashedPassword = user.data.password; // Accede a la contraseña hasheada
+    const hashedPassword = user.data.password;
     const isMatch = await bcrypt.compare(password, hashedPassword);
     if (!isMatch) {
       req.flash('error_msg', 'Incorrect password');
