@@ -3,14 +3,14 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 
 const defaultUser = {
-  username: 'admin',
-  password: 'password123'
+  username: process.env.USER,
+  password: process.env.PASSWORD
 };
 
-const saltRounds = 10; // número de rondas de hash
+const saltRounds = 10; 
 const hashedPassword = bcrypt.hashSync(defaultUser.password, saltRounds);
 
-console.log(hashedPassword); // salida: $2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+console.log(hashedPassword);
 
 defaultUser.password = hashedPassword;
 
