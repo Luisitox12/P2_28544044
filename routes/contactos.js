@@ -1,29 +1,28 @@
 var express = require('express');
 var router = express.Router();
-var ContactosModel = require('../models/ContactosModel'); // Importa el modelo de Contactos
+var db = require('../conf/database');
 
-// Instancia del modelo de contactos
-const contactosModel = new ContactosModel();
-
-// Middleware para verificar la autenticación
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  req.flash('error_msg', 'Debes iniciar sesión para ver esta página.');
-  res.redirect('/auth/login');
-}
-
-// Ruta de contactos protegida
-router.get('/', ensureAuthenticated, async (req, res, next) => {
-  try {
-    const contactos = await contactosModel.obtenerAllContactos();
-    res.render('contactos', { data: contactos }); // Renderiza la vista con los datos obtenidos
-  } catch (err) {
-    console.error('Error al obtener los contactos:', err);
-    req.flash('error_msg', 'Ocurrió un error al obtener los contactos.');
-    res.redirect('/');
-  }
+router.get('/', ensureAuthenticated, async function(req, res, next) {
+  // El usuario ha iniciado sesión, mostrar la página de contactos
+  const rows = await new Promise((resolve, reject) => {
+    db.getAllContacts((err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+    });
+  res.render('contactos', { title: 'Contactos', data: rows });
 });
+
+function ensureAuthenticated(req, res, next) {
+  if (!req.session.user) {
+    // El usuario no ha iniciado sesión, redirigir al usuario a la página de inicio
+    res.redirect('/auth/login');
+  } else {
+    next();
+  }
+}
 
 module.exports = router;

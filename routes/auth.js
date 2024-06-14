@@ -1,40 +1,56 @@
 var express = require('express');
-var passport = require('passport');
 var router = express.Router();
+const bcrypt = require('bcrypt');
 
-// Ruta para mostrar el formulario de login
-router.get('/login', (req, res) => {
-  res.render('login');
+const defaultUser = {
+  username: process.env.USER,
+  password: process.env.PASSWORD
+};
+
+const saltRounds = 10; 
+const hashedPassword = bcrypt.hashSync(defaultUser.password, saltRounds);
+
+console.log(hashedPassword);
+
+defaultUser.password = hashedPassword;
+
+
+// Página de inicio de sesión
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login' });
 });
 
-// Ruta para manejar el login con la estrategia local
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/contactos',
-  failureRedirect: '/auth/login',
-  failureFlash: true
-}));
 
-// Ruta para manejar la autenticación con Google
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-// Ruta de callback de Google
-router.get('/google/callback', 
-  passport.authenticate('google', { 
-    failureRedirect: '/auth/login',
-    failureFlash: true 
-  }),
-  (req, res) => {
-    res.redirect('/contactos');
+// Manejar inicio de sesión
+router.post('/login', async function(req, res, next) {
+    if (req.session.user) {
+      // La sesión ya existe, redirigir al usuario a la página de inicio
+      res.redirect('/');
+    } else {
+      // Crear una nueva sesión
+  const { username, password } = req.body;
+  if (username === defaultUser.username) {
+    const isMatch = await bcrypt.compare(password, hashedPassword);
+    if (isMatch) {
+      req.session.user = defaultUser;
+      res.redirect('/contactos');
+    } else {
+      req.flash('error_msg', 'Contraseña incorrecta');
+      res.redirect('/auth/login');
+    }
+  } else {
+    req.flash('error_msg', 'Usuario no encontrado');
+    res.redirect('/auth/login');
   }
-);
+  }
+});
 
-// Ruta para el logout
-router.get('/logout', (req, res) => {
-  req.logout((err) => {
+// Manejar cierre de sesión
+router.get('/logout', function(req, res) {
+  req.session.destroy(err => {
     if (err) {
       return next(err);
     }
-    req.flash('success_msg', 'Sesión cerrada exitosamente.');
     res.redirect('/auth/login');
   });
 });
