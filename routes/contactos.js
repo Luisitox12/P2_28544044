@@ -17,11 +17,12 @@ router.get('/', ensureAuthenticated, async function(req, res, next) {
 });
 
 function ensureAuthenticated(req, res, next) {
-  if (!req.session.user) {
+  if (req.session.user || req.user) {
+    // El usuario ha iniciado sesión, mostrar la página de contactos
+    next();
+  } else {
     // El usuario no ha iniciado sesión, redirigir al usuario a la página de inicio
     res.redirect('/auth/login');
-  } else {
-    next();
   }
 }
 

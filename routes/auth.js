@@ -21,13 +21,8 @@ router.get('/login', function(req, res, next) {
 });
 
 
-// Manejar inicio de sesión
+// Manejar inicio de sesión con usuario definido
 router.post('/login', async function(req, res, next) {
-    if (req.session.user) {
-      // La sesión ya existe, redirigir al usuario a la página de inicio
-      res.redirect('/');
-    } else {
-      // Crear una nueva sesión
   const { username, password } = req.body;
   if (username === defaultUser.username) {
     const isMatch = await bcrypt.compare(password, hashedPassword);
@@ -42,7 +37,14 @@ router.post('/login', async function(req, res, next) {
     req.flash('error_msg', 'Usuario no encontrado');
     res.redirect('/auth/login');
   }
-  }
+});
+
+// Manejar inicio de sesión con Google
+router.get('/google/callback', passport.authenticate('google', {
+  failureRedirect: '/login'
+}), (req, res) => {
+  req.session.user = req.user;
+  res.redirect('/contactos');
 });
 
 // Manejar cierre de sesión
