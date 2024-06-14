@@ -4,7 +4,15 @@ var db = require('../conf/database');
 
 router.get('/', ensureAuthenticated, async function(req, res, next) {
   // El usuario ha iniciado sesión, mostrar la página de contactos
-  const rows = await db.all('SELECT * FROM contactos');
+  const rows = await new Promise((resolve, reject) => {
+    db.getAllContacts((err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+    });
   res.render('contactos', { title: 'Contactos', data: rows });
 });
 
