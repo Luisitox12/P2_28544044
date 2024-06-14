@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../conf/datos');
+var db = require('../conf/datos.db');
 
 router.get('/', ensureAuthenticated, async function(req, res, next) {
   // El usuario ha iniciado sesión, mostrar la página de contactos
