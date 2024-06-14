@@ -21,13 +21,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configurar sesión
 app.use(session({
-  secret: 'yourSecretKey',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Configurar flash
 app.use(flash());
+
+
 
 // Middleware para hacer mensajes flash disponibles en todas las vistas
 app.use((req, res, next) => {
@@ -58,7 +63,7 @@ app.get('/auth/google', passport.authenticate('google', {
 }));
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: '/login'
+  failureRedirect: '/contactos'
 }), (req, res) => {
   res.redirect('/contactos');
 });
