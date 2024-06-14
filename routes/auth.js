@@ -37,7 +37,25 @@ router.post('/login', async function(req, res, next) {
       req.flash('error_msg', 'No user found with that username');
       return res.redirect('/auth/login');
     }
-    const hashedPassword = user.password; // Accede a la contraseña hasheada
+
+    if (typeof user!== 'object') {
+      req.flash('error_msg', 'Error al obtener usuario');
+      return res.redirect('/auth/login');
+    }
+    if (!('data' in user)) {
+      req.flash('error_msg', 'Error al obtener datos de usuario');
+      return res.redirect('/auth/login');
+    }
+    if (typeof user.data!== 'object') {
+      req.flash('error_msg', 'Error al obtener datos de usuario');
+      return res.redirect('/auth/login');
+    }
+    if (!('password' in user.data)) {
+      req.flash('error_msg', 'Error al obtener contraseña de usuario');
+      return res.redirect('/auth/login');
+    }
+
+    const hashedPassword = user.data.password; // Accede a la contraseña hasheada
     const isMatch = await bcrypt.compare(password, hashedPassword);
     if (!isMatch) {
       req.flash('error_msg', 'Incorrect password');
