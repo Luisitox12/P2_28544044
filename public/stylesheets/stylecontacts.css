@@ -1,34 +1,48 @@
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
-  }
-  
-  table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  table th, table td {
-    padding: 12px 15px;
-  }
-  
-  table tbody tr {
-    border-bottom: 1px solid #dddddd;
-  }
-  
-  table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  
-  table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-  }
-  
-  table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table thead tr {
+  background-color: #3498db; /* Azul claro */
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #3498db;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  background-color: #f9f9f9; /* Fondo claro */
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr {
+  background-color: #ffffff; /* Fondo blanco */
+  transition: background-color 0.2s ease;
+}
+
+table tbody tr:hover {
+  background-color: #f7f7f7; /* Fondo gris claro */
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f2f2f2; /* Fondo gris claro */
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #3498db;
+}
+
+/* Agregamos un fondo degradado para darle un toque más moderno */
+table {
+  background-image: linear-gradient(to bottom, #f9f9f9, #ffffff);
+  background-size: 100% 200px;
+  background-position: 0% 100%;
+}
