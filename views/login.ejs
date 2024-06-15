@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Iniciar sesión</title>
+  <title>Login</title>
   <link rel='stylesheet' href='/stylesheets/login.css' />
 </head>
 <body>
-  <div class="container">
-    <div class="form-background">
-      <h1>Iniciar sesión</h1>
-      <% if (error_msg) { %>
-        <p><%= error_msg %></p>
-      <% } %>
-      <form action="/auth/login" method="POST">
-        <input type="text" name="username" placeholder="Usuario" required>
-        <br>
-        <input type="password" name="password" placeholder="Contraseña" required>
-        <br><br>
-        <button type="submit">Ingresar</button>
-      </form>
-      <p class="sign-up-divider">o inicia con</p>
-      <div class="social-media">
-        <ul class="social-media-icons">
-          <li class="google"><a href="/auth/google">Iniciar sesión con Google <i class="fab fa-google-plus-g"></i></a></li>
-        </ul>
-      </div>
-    </div>
+  <h1>Login</h1>
+  <% if (error_msg) { %>
+    <p><%= error_msg %></p>
+  <% } %>
+  <form action="/auth/login" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+    <button type="submit">Login</button>
+  </form>
+  <a href="/auth/google">Iniciar sesión con Google </a>
 </body>
 </html>
