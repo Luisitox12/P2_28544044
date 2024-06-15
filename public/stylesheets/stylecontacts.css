@@ -7,42 +7,38 @@ table {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to bottom, #ffdde1, #ffe6f5);
+  background-size: 100% 200px;
+  background-position: 0% 100%;
 }
 
 table thead tr {
-  background-color: #3498db; /* Azul claro */
+  background-color: #8e24aa;
   color: #ffffff;
   text-align: left;
   font-weight: bold;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid #8e24aa;
 }
 
 table th, table td {
   padding: 12px 15px;
-  background-color: #f9f9f9; /* Fondo claro */
+  background-color: #f9f9f9;
   border-bottom: 1px solid #dddddd;
 }
 
 table tbody tr {
-  background-color: #ffffff; /* Fondo blanco */
+  background-color: #ffffff;
   transition: background-color 0.2s ease;
 }
 
 table tbody tr:hover {
-  background-color: #f7f7f7; /* Fondo gris claro */
+  background-color: #f7f7f7;
 }
 
 table tbody tr:nth-of-type(even) {
-  background-color: #f2f2f2; /* Fondo gris claro */
+  background-color: #f2f2f2;
 }
 
 table tbody tr:last-of-type {
-  border-bottom: 2px solid #3498db;
-}
-
-/* Agregamos un fondo degradado para darle un toque más moderno */
-table {
-  background-image: linear-gradient(to bottom, #f9f9f9, #ffffff);
-  background-size: 100% 200px;
-  background-position: 0% 100%;
+  border-bottom: 2px solid #8e24aa;
 }
