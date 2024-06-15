@@ -1,3 +1,21 @@
+body {
+  background-color: #8e24aa; /* Morado oscuro */
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-size: 18px;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Resto del CSS para la tabla */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -7,9 +25,7 @@ table {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-image: linear-gradient(to bottom, #ffdde1, #ffe6f5);
-  background-size: 100% 200px;
-  background-position: 0% 100%;
+  background-color: #8e24aa; /* Morado oscuro */
 }
 
 table thead tr {
