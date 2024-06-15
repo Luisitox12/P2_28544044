@@ -13,14 +13,32 @@ table {
 }
 
 table thead tr {
-  background-color: #8e24aa;
-  color: #ffffff;
+  background-color: #8e24aa; /* Morado oscuro */
+  color: #ffffff; /* Blanco */
   text-align: left;
   font-weight: bold;
   border-bottom: 2px solid #8e24aa;
+  padding: 10px; /* Agregamos padding para dar espacio entre el texto y el borde */
+  border-radius: 10px 10px 0 0; /* Redondeamos las esquinas superiores */
 }
 
-table th, table td {
+table th {
+  background-color: #8e24aa; /* Morado oscuro */
+  color: #ffffff; /* Blanco */
+  padding: 10px; /* Agregamos padding para dar espacio entre el texto y el borde */
+  border-bottom: 1px solid #dddddd;
+  border-right: 1px solid #dddddd; /* Agregamos un borde derecho para separar las celdas */
+}
+
+table th:first-child {
+  border-radius: 10px 0 0 0; /* Redondeamos la esquina superior izquierda */
+}
+
+table th:last-child {
+  border-radius: 0 10px 0 0; /* Redondeamos la esquina superior derecha */
+}
+
+table td {
   padding: 12px 15px;
   background-color: #f9f9f9;
   border-bottom: 1px solid #dddddd;
