@@ -1,5 +1,5 @@
 body {
-  background-color: #8e24aa; /* Morado oscuro */
+  background-color: #1cbbbdaa; /* Morado oscuro */
   margin: 0;
   padding: 0;
 }
@@ -25,21 +25,21 @@ table {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #8e24aa; /* Morado oscuro */
+  background-color: #24aa4c; /* Morado oscuro */
 }
 
 table thead tr {
-  background-color: #8e24aa; /* Morado oscuro */
+  background-color: #3faa24; /* Morado oscuro */
   color: #ffffff; /* Blanco */
   text-align: left;
   font-weight: bold;
-  border-bottom: 2px solid #8e24aa;
+  border-bottom: 2px solid #100b12;
   padding: 10px; /* Agregamos padding para dar espacio entre el texto y el borde */
   border-radius: 10px 10px 0 0; /* Redondeamos las esquinas superiores */
 }
 
 table th {
-  background-color: #8e24aa; /* Morado oscuro */
+  background-color: #24aa79; /* Morado oscuro */
   color: #ffffff; /* Blanco */
   padding: 10px; /* Agregamos padding para dar espacio entre el texto y el borde */
   border-bottom: 1px solid #dddddd;
@@ -74,5 +74,5 @@ table tbody tr:nth-of-type(even) {
 }
 
 table tbody tr:last-of-type {
-  border-bottom: 2px solid #8e24aa;
+  border-bottom: 2px solid #6fad11;
 }
