@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-image: linear-gradient(to bottom, #87CEEB, #6495ED);
     margin: 0;
     padding: 0;
     display: flex;
@@ -22,7 +22,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 300px;
+  }
+  
+  .login-text {
     text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
   
   label {
@@ -72,9 +78,4 @@ body {
   
   a.google-btn:hover {
     background-color: #3367d6;
-  }
-  
-  .login-text {
-    text-align: center;
-    margin-bottom: 20px;
   }
