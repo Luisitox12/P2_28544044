@@ -4,24 +4,17 @@
   <title>Login</title>
   <link rel='stylesheet' href='/stylesheets/login.css' />
 </head>
-<body>
-  <div class="login-container">
-    <div class="login-header">
-      <h1 class="login-text">Login</h1>
-    </div>
-    <% if (error_msg) { %>
-      <p><%= error_msg %></p>
-    <% } %>
-    <form action="/auth/login" method="POST">
-      <div class="form-container">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
-        <button type="submit">Login</button>
-      </div>
+<div class="login">
+	<h1>Login</h1>
+  <% if (error_msg) { %>
+    <p><%= error_msg %></p>
+  <% } %>
+    <form action="/auth/login"  method="post">
+    	<input type="text" name="u" placeholder="Username" required="required" />
+        <input type="password" name="p" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Login.</button>
+      <a href="/auth/google" class="google-btn">Iniciar sesión con Google</a>
     </form>
-    <a href="/auth/google" class="google-btn">Iniciar sesión con Google</a>
-  </div>
+</div>
 </body>
 </html>
