@@ -60,7 +60,7 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/login'
 }), (req, res) => {
-  res.redirect('http://localhost:3000/contactos');
+  res.redirect('/contactos');
 });
 
 app.use('/', indexRouter);
