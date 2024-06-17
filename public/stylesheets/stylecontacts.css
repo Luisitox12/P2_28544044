@@ -1,5 +1,7 @@
+h1 { color: #0d0d0d; text-shadow: 0 0 10px rgba(0,0,0,0.9); letter-spacing:1px; text-align:center; }
+
 body {
-  background-color: #1cbbbdaa; /* Morado oscuro */
+  background-color: #5196eaaa; /* Morado oscuro */
   margin: 0;
   padding: 0;
 }
