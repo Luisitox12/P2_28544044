@@ -36,11 +36,11 @@ router.post('/login', async function(req, res, next) {
       res.redirect('/contactos');
     } else {
       req.flash('error_msg', 'Contraseña incorrecta');
-      res.redirect('/login');
+      res.redirect('/auth/login');
     }
   } else {
     req.flash('error_msg', 'Usuario no encontrado');
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
   }
 });
