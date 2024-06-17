@@ -36,11 +36,11 @@ router.post('/login', async function(req, res, next) {
       res.redirect('/contactos');
     } else {
       req.flash('error_msg', 'Contraseña incorrecta');
-      res.redirect('/auth/login');
+      res.redirect('/login');
     }
   } else {
     req.flash('error_msg', 'Usuario no encontrado');
-    res.redirect('/auth/login');
+    res.redirect('/login');
   }
   }
 });
@@ -51,7 +51,7 @@ router.get('/logout', function(req, res) {
     if (err) {
       return next(err);
     }
-    res.redirect('/auth/login');
+    res.redirect('/login');
   });
 });
 

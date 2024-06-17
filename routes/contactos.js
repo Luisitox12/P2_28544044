@@ -19,7 +19,7 @@ router.get('/', ensureAuthenticated, async function(req, res, next) {
 function ensureAuthenticated(req, res, next) {
   if (!req.session.user) {
     // El usuario no ha iniciado sesión, redirigir al usuario a la página de inicio
-    res.redirect('/auth/login');
+    res.redirect('/login');
   } else {
     next();
   }
