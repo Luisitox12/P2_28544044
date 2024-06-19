@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var flash = require('connect-flash');
-var passport = require('passport');
+const passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var app = express();
 

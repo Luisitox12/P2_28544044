@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
-var passport = require('passport');
+const passport = require('passport');
 
 const defaultUser = {
   username: process.env.USER,
@@ -56,10 +56,15 @@ router.get('/google/callback',
     failureFlash: true 
   }),
   (req, res) => {
-    console.log('Autenticación con Google exitosa:', req.user);
+    // Verificar que la sesión esté configurada correctamente
+    console.log('Sesión:', req.session);
+
+    // Almacenar la información del usuario autenticado en la sesión
+    req.session.user = req.user;
+
     res.redirect('/contactos');
   }
-)
+);
 
 // Manejar cierre de sesión
 router.get('/logout', function(req, res) {
