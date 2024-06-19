@@ -67,7 +67,7 @@ passport.use(new LocalStrategy(
 passport.use(new GoogleStrategy({
   clientID: process.env.USER_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "https://proyect-v0-1.onrender.com/auth/google/"
+  callbackURL: "https://proyect-v0-1.onrender.com/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
   return done(null, profile);
