@@ -63,25 +63,6 @@ app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 
-app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: '/login'
-}), (req, res) => {
-  req.session.user = req.user; // Configura la sesión del usuario
-  res.redirect('/contactos');
-});
-
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/contactos",
-    failureRedirect: "/login",
-  }),
-  (req, res) => {
-    console.log("entro a callback");
-    req.flash("success_msg", "Bienvenido " + req.user.displayName);
-  }
-);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
