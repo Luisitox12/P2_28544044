@@ -46,8 +46,6 @@ router.post('/login', async function(req, res, next) {
   }
 });
 
-// Ruta para manejar la autenticación con Google
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 // Ruta de callback de Google
 router.get('/google/callback', 
