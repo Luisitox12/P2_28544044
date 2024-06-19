@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
+var passport = require('passport');
 
 const defaultUser = {
   username: process.env.USER,
@@ -44,6 +45,21 @@ router.post('/login', async function(req, res, next) {
   }
   }
 });
+
+
+// Ruta para manejar la autenticación con Google
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// Ruta de callback de Google
+router.get('/google/callback', 
+passport.authenticate('google', { 
+    failureRedirect: '/auth/login',
+    failureFlash: true 
+  }),
+  (req, res) => {
+    res.redirect('/contactos');
+  }
+);
 
 // Manejar cierre de sesión
 router.get('/logout', function(req, res) {
