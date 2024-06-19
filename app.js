@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var flash = require('connect-flash');
+var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var app = express();
 
@@ -26,6 +27,9 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Configurar flash
 app.use(flash());
 
@@ -37,11 +41,13 @@ app.use((req, res, next) => {
   next();
 });
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var contactosRouter = require('./routes/contactos');
-var authRouter = require('./routes/auth'); // Nueva ruta para autenticación
-var passport = require('passport');
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 // Configuración de la estrategia de Google OAuth
 passport.use(new GoogleStrategy({
@@ -60,8 +66,14 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/login'
 }), (req, res) => {
+  req.session.user = req.user; // Configura la sesión del usuario
   res.redirect('/contactos');
 });
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var contactosRouter = require('./routes/contactos');
+var authRouter = require('./routes/auth'); // Nueva ruta para autenticación
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -70,14 +82,14 @@ app.use('/auth', authRouter); // Usar las rutas de autenticación
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development'? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
