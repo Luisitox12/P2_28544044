@@ -9,20 +9,18 @@
     <div class="login-header">
       <h1>Login</h1>
     </div>
-    <% if (error_msg) { %>
-      <p><%= error_msg %></p>
-    <% } %>
     <form action="/auth/login" method="POST">
       <div class="form-container">
-        <label for="username">Username:</label>
+        <label for="username">Usuario:</label>
         <input type="text" name="username" id="username" required>
-        <label for="password">Password:</label>
+        <label for="password">Contrasena:</label>
         <input type="password" name="password" id="password" required>
-        <button type="submit" class="btn btn-primary">Login</button>
       </div>
     </form>
-    <a href="/auth/google" class="btn google-btn">Iniciar sesión con Google</a>
-    <a href="/" class="btn btn-back">Regresar a la página principal</a>
+    <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+    <a href="/auth/google" class="btn btn-primary">Iniciar sesión con Google</a>
+    <p>&nbsp;</p>
+    <a href="/" class="btn btn-primary">Regresar a la página principal</a>
   </div>
 </body>
 </html>
