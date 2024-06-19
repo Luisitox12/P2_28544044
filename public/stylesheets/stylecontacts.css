@@ -78,3 +78,31 @@ table tbody tr:nth-of-type(even) {
 table tbody tr:last-of-type {
   border-bottom: 2px solid #6fad11;
 }
+
+a.btn-danger {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #4285f4;
+  color: #020202;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+a.btn-back {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #4285f4;
+  color: #020202;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
