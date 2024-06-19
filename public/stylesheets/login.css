@@ -58,31 +58,4 @@ input {
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 
 
-a.google-btn {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #4285f4;
-    color: #020202;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-  }
-
-  a.btn-back {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #4285f4;
-    color: #020202;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-  }
 
