@@ -50,7 +50,7 @@ passport.deserializeUser(function(obj, done) {
 });
 
 // Configuración de la estrategia de Google OAuth
-passport.use(new GoogleStrategy({
+  passport.use(new GoogleStrategy({
   clientID: process.env.USER_ID,
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: process.env.CALLBACK_URL
@@ -63,6 +63,16 @@ app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 
+// Ruta de callback de Google
+  router.get('/google/callback', 
+  passport.authenticate('google', { 
+    failureRedirect: '/auth/login',
+    failureFlash: true 
+  }),
+  (req, res) => {
+    res.redirect('/contactos');
+  }
+)
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
