@@ -7,6 +7,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var flash = require('connect-flash');
 const passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var app = express();
 
 // view engine setup
@@ -48,6 +49,36 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
+// Configuración de la estrategia de Google OAuth
+passport.use(new GoogleStrategy({
+  clientID: process.env.USER_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: process.env.CALLBACK_URL
+},
+function(accessToken, refreshToken, profile, done) {
+  return done(null, profile);
+}));
+
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
+
+// Ruta de callback de Google
+router.get('/google/callback', 
+  passport.authenticate('google', { 
+    failureRedirect: '/auth/login',
+    failureFlash: true 
+  }),
+  (req, res) => {
+    // Verificar que la sesión esté configurada correctamente
+    console.log('Sesión:', req.session);
+
+    // Almacenar la información del usuario autenticado en la sesión
+    req.session.user = req.user;
+
+    res.redirect('/contactos');
+  }
+);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

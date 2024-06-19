@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 
 const defaultUser = {
   username: process.env.USER,
@@ -47,36 +47,6 @@ router.post('/login', async function(req, res, next) {
   }
 });
 
-// Configuración de la estrategia de Google OAuth
-passport.use(new GoogleStrategy({
-  clientID: process.env.USER_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: process.env.CALLBACK_URL
-},
-function(accessToken, refreshToken, profile, done) {
-  return done(null, profile);
-}));
-
-router.get('/auth/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
-
-// Ruta de callback de Google
-router.get('/google/callback', 
-  passport.authenticate('google', { 
-    failureRedirect: '/auth/login',
-    failureFlash: true 
-  }),
-  (req, res) => {
-    // Verificar que la sesión esté configurada correctamente
-    console.log('Sesión:', req.session);
-
-    // Almacenar la información del usuario autenticado en la sesión
-    req.session.user = req.user;
-
-    res.redirect('/contactos');
-  }
-);
 
 // Manejar cierre de sesión
 router.get('/logout', function(req, res) {
