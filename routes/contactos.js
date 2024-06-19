@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var ContactosModel = require('../models/ContactosModel'); // Importa el modelo de Contactos
+var database = require('../conf/database'); // Importa el modelo de Contactos
 
 // Instancia del modelo de contactos
-const contactosModel = new ContactosModel();
+const database = new database();
 
 // Middleware para verificar la autenticación
 function ensureAuthenticated(req, res, next) {
