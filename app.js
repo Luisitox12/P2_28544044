@@ -50,8 +50,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Estrategia Local
-const predefinedUser = process.env.PREDEFINED_USER;
-const predefinedPass = process.env.PREDEFINED_PASS;
+const predefinedUser = process.env.USER;
+const predefinedPass = process.env.PASSWORD;
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
