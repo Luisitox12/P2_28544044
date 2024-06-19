@@ -6,8 +6,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var flash = require('connect-flash');
-const passport = require('passport');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var contactosRouter = require('./routes/contactos');
+var authRouter = require('./routes/auth'); // Nueva ruta para autenticación
+
 var app = express();
 
 // view engine setup
@@ -20,17 +27,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Configurar sesión
+// Configuración de la sesión
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Configurar flash
+// Configuración de flash
 app.use(flash());
 
 // Middleware para hacer mensajes flash disponibles en todas las vistas
@@ -41,13 +45,23 @@ app.use((req, res, next) => {
   next();
 });
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
+// Configuración de Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
+// Estrategia Local
+const predefinedUser = process.env.PREDEFINED_USER;
+const predefinedPass = process.env.PREDEFINED_PASS;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    if (username === predefinedUser && password === predefinedPass) {
+      return done(null, { username: predefinedUser });
+    } else {
+      return done(null, false, { message: 'Usuario o contraseña incorrectos' });
+    }
+  }
+));
 
 // Configuración de la estrategia de Google OAuth
 passport.use(new GoogleStrategy({
@@ -59,31 +73,13 @@ function(accessToken, refreshToken, profile, done) {
   return done(null, profile);
 }));
 
-app.get('/auth/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
 
-// Ruta de callback de Google
-app.get('/google/callback', 
-  passport.authenticate('google', { 
-    failureRedirect: '/auth/login',
-    failureFlash: true 
-  }),
-  (req, res) => {
-    // Verificar que la sesión esté configurada correctamente
-    console.log('Sesión:', req.session);
-
-    // Almacenar la información del usuario autenticado en la sesión
-    req.session.user = req.user;
-
-    res.redirect('/contactos');
-  }
-);
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var contactosRouter = require('./routes/contactos');
-var authRouter = require('./routes/auth'); // Nueva ruta para autenticación
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -92,7 +88,7 @@ app.use('/auth', authRouter); // Usar las rutas de autenticación
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-next(createError(404));
+  next(createError(404));
 });
 
 // error handler
