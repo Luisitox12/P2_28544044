@@ -24,7 +24,7 @@ router.get('/google/callback',
     failureFlash: true 
   }),
   (req, res) => {
-    res.redirect('/contactos');
+    res.redirect('http://localhost:3000/contactos');
   }
 );
 
