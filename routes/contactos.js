@@ -2,11 +2,6 @@ var express = require('express');
 var router = express.Router();
 var ContactosModel = require('../models/ContactosModel'); // Importa el modelo de Contactos
 
- router.get('/contactos', function(req, res) {
-  const title = 'Contactos';
-  res.render('contactos', { title });
-});
-
 // Instancia del modelo de contactos
 const contactosModel = new ContactosModel();
 
