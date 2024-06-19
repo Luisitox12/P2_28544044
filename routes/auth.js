@@ -56,6 +56,7 @@ router.get('/google/callback',
     failureFlash: true 
   }),
   (req, res) => {
+    console.log('Autenticación con Google exitosa:', req.user);
     res.redirect('/contactos');
   }
 )
