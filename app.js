@@ -70,6 +70,19 @@ app.get('/auth/google/callback', passport.authenticate('google', {
   res.redirect('/contactos');
 });
 
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/contactos",
+    failureRedirect: "/login",
+  }),
+  (req, res) => {
+    console.log("entro a callback");
+    req.flash("success_msg", "Bienvenido " + req.user.displayName);
+  }
+);
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var contactosRouter = require('./routes/contactos');
